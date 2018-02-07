@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="user" type="ivakhnenko.customviewexample.model.User"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent" android:layout_height="167dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            tools:text="User name"
+            android:text="@{user.name}" android:textAppearance="?android:textAppearanceMedium" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            tools:text="Address"
+            android:layout_marginTop="16dp" android:text="@{user.address}" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            tools:text="Role"
+            android:layout_marginTop="16dp" android:text="@{user.role}" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:rating="@{user.rating}"
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

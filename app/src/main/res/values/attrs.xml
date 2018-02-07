@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RiffCustomView">
+        <attr name="riffName" format="string"/>
+        <attr name="riffAddress" format="string"/>
+        <attr name="riffRole" format="string"/>
+        <attr name="riffRating" format="integer"/>
+    </declare-styleable>
+</resources>
