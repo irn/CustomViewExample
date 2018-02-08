@@ -4,6 +4,6 @@
         <attr name="riffName" format="string"/>
         <attr name="riffAddress" format="string"/>
         <attr name="riffRole" format="string"/>
-        <attr name="riffRating" format="integer"/>
+        <attr name="riffRating" format="float"/>
     </declare-styleable>
 </resources>

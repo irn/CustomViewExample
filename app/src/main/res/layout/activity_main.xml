@@ -8,6 +8,7 @@
     tools:context="ivakhnenko.customviewexample.MainActivity">
 
     <ivakhnenko.customviewexample.view.RiffCustomView
+        android:id="@+id/curstomview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:riffName="Vasia"

@@ -17,7 +17,7 @@ public class User implements Parcelable {
 
     private String role;
 
-    private Integer rating;
+    private Float rating;
 
     public Integer getId() {
         return id;
@@ -51,11 +51,11 @@ public class User implements Parcelable {
         this.role = role;
     }
 
-    public Integer getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 
@@ -77,11 +77,11 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.id = in.readInt();
         this.name = in.readString();
         this.address = in.readString();
         this.role = in.readString();
-        this.rating = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.rating = in.readFloat();
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
