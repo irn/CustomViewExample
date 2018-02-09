@@ -15,7 +15,7 @@ public class User implements Parcelable {
 
     private String address;
 
-    private String role;
+    private UserRole role;
 
     private Float rating;
 
@@ -43,11 +43,11 @@ public class User implements Parcelable {
         this.address = address;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
@@ -69,7 +69,7 @@ public class User implements Parcelable {
         dest.writeValue(this.id);
         dest.writeString(this.name);
         dest.writeString(this.address);
-        dest.writeString(this.role);
+        dest.writeString(this.role.name());
         dest.writeValue(this.rating);
     }
 
@@ -80,7 +80,7 @@ public class User implements Parcelable {
         this.id = in.readInt();
         this.name = in.readString();
         this.address = in.readString();
-        this.role = in.readString();
+        this.role = UserRole.valueOf(in.readString());
         this.rating = in.readFloat();
     }
 

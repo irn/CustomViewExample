@@ -3,7 +3,11 @@
     <declare-styleable name="RiffCustomView">
         <attr name="riffName" format="string"/>
         <attr name="riffAddress" format="string"/>
-        <attr name="riffRole" format="string"/>
+        <attr name="riffRole" format="enum">
+            <enum name="ADMIN" value="1"/>
+            <enum name="USER" value="2"/>
+            <enum name="ANONYMOUS" value="3"/>
+        </attr>
         <attr name="riffRating" format="float"/>
     </declare-styleable>
 </resources>

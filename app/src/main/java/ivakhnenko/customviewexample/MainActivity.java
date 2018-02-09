@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import ivakhnenko.customviewexample.model.User;
+import ivakhnenko.customviewexample.model.UserRole;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,12 +21,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("ruslan");
-        User user = new User();
-        user.setName("Valia Ivakhnenko");
-        user.setAddress("Peresechne");
-        user.setId(3321);
+        float rating = 1;
+        for (int i = 100; i < 120; i++){
+            User user = new User();
+            user.setName("User " + i);
+            user.setRole(UserRole.ADMIN);
+            user.setRating(rating++);
+            user.setAddress("Address " + i);
+            user.setAddress("Kharkiv Klochkivska street 23");
+            user.setId(i);
+            databaseReference.child("riffusers").child(String.valueOf(user.getId())).setValue(user);
+            if (rating == 5){
+                rating = 1;
+            }
+        }
 
-        databaseReference.child("ruslan").child(String.valueOf(user.getId())).setValue(user);
+
 
         databaseReference.child("ruslan").addChildEventListener(new ChildEventListener() {
             @Override

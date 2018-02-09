@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import ivakhnenko.customviewexample.R;
 import ivakhnenko.customviewexample.databinding.RiffLayoutBinding;
 import ivakhnenko.customviewexample.model.User;
+import ivakhnenko.customviewexample.model.UserRole;
 
 /**
  * Created by Ruslan Ivakhnenko on 07.02.18.
@@ -53,6 +54,17 @@ public class RiffCustomView extends ConstraintLayout {
             try {
                 String name = typedArray.getString(R.styleable.RiffCustomView_riffName);
                 setName(name);
+
+                String address = typedArray.getString(R.styleable.RiffCustomView_riffAddress);
+                setAddress(address);
+                int roleInt = typedArray.getInt(R.styleable.RiffCustomView_riffRole, 0);
+                UserRole userRole = UserRole.findById(roleInt);
+                if (userRole != null) {
+                    setRole(userRole);
+                }
+
+                float rating = typedArray.getFloat(R.styleable.RiffCustomView_riffRating, 0);
+                setRating(rating);
             } catch (RuntimeException ex){
                 ex.printStackTrace();
             }
@@ -72,6 +84,21 @@ public class RiffCustomView extends ConstraintLayout {
 
     public void setName(String name){
         user.setName(name);
+        binding.setUser(user);
+    }
+
+    public void setAddress(String address){
+        user.setAddress(address);
+        binding.setUser(user);
+    }
+
+    public void setRole(UserRole role){
+        user.setRole(role);
+        binding.setUser(user);
+    }
+
+    public void setRating(float rating){
+        user.setRating(rating);
         binding.setUser(user);
     }
 }

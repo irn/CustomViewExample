@@ -34,7 +34,7 @@
             android:layout_height="wrap_content" android:layout_marginStart="16dp"
             android:textAppearance="?android:textAppearanceMedium"
             tools:text="Role"
-            android:layout_marginTop="16dp" android:text="@{user.role}" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" android:text="@{user.role.name}" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"/>
         <RatingBar
             android:id="@+id/ratingBar"
