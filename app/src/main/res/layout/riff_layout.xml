@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="ivakhnenko.customviewexample.model.UserRole"/>
         <variable name="user" type="ivakhnenko.customviewexample.model.User"/>
     </data>
     <android.support.constraint.ConstraintLayout
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
                                                  xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                  android:paddingBottom="16dp"
+                                                 android:background="@{UserRole.ADMIN == user.role ? @android:color/holo_blue_dark : 0}"
                                                  android:layout_height="match_parent">
 
         <ImageView
