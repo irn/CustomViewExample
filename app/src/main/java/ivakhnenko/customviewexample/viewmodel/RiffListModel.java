@@ -1,6 +1,6 @@
 package ivakhnenko.customviewexample.viewmodel;
 
-import java.util.Map;
+import java.util.List;
 
 import io.reactivex.Observable;
 import ivakhnenko.customviewexample.model.User;
@@ -11,5 +11,5 @@ import ivakhnenko.customviewexample.model.User;
 
 public interface RiffListModel {
 
-    Observable<Map<String,User>> getUsers();
+    Observable<List<User>> getUsers();
 }

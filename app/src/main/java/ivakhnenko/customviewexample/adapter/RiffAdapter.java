@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import ivakhnenko.customviewexample.databinding.RiffLayoutBinding;
@@ -30,7 +32,9 @@ public class RiffAdapter extends ArrayAdapter<User> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         RiffLayoutBinding layoutBinding = RiffLayoutBinding.inflate(inflater, parent, false);
-        layoutBinding.setUser(getItem(position));
+        User user = getItem(position);
+        layoutBinding.setUser(user);
+        Glide.with(getContext()).load(user.getUrl()).into(layoutBinding.imageView2);
         return layoutBinding.getRoot();
     }
 }

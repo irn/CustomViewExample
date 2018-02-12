@@ -1,5 +1,9 @@
 package ivakhnenko.customviewexample.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,14 +11,19 @@ import android.os.Parcelable;
  * Created by Ruslan Ivakhnenko on 07.02.18.
  */
 
+@Entity
 public class User implements Parcelable {
 
+    @PrimaryKey
     private Integer id;
 
     private String name;
 
     private String address;
 
+    private String url;
+
+    @TypeConverters(User.class)
     private UserRole role;
 
     private Float rating;
@@ -33,6 +42,14 @@ public class User implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getAddress() {
@@ -71,6 +88,16 @@ public class User implements Parcelable {
         dest.writeString(this.address);
         dest.writeString(this.role.name());
         dest.writeValue(this.rating);
+    }
+
+    @TypeConverter
+    public UserRole fromRoleId(int id){
+        return UserRole.findById(id);
+    }
+
+    @TypeConverter
+    public int toRole(UserRole userRole){
+        return userRole != null ? userRole.id : 1;
     }
 
     public User() {

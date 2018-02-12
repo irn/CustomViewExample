@@ -1,8 +1,11 @@
 package ivakhnenko.customviewexample.viewmodel;
 
-import java.util.Map;
+import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+import ivakhnenko.customviewexample.database.UserDatabaseFactory;
+import ivakhnenko.customviewexample.database.UserDatabaseFactoryImpl;
 import ivakhnenko.customviewexample.model.User;
 import ivakhnenko.customviewexample.network.UserFactory;
 
@@ -14,12 +17,26 @@ public class RiffListModelImpl implements RiffListModel {
 
     private UserFactory userFactory;
 
+    private UserDatabaseFactory databaseFactory;
+
     public RiffListModelImpl(UserFactory userFactory) {
         this.userFactory = userFactory;
+        databaseFactory = new UserDatabaseFactoryImpl(MyApplication.getContext());
     }
 
     @Override
-    public Observable<Map<String, User>> getUsers() {
-        return userFactory.getUsers();
+    public Observable<List<User>> getUsers() {
+
+        return userFactory.getUsers()
+                .subscribeOn(Schedulers.io())
+                .map(map -> {
+                    for (User u : map.values()) {
+                        databaseFactory.insert(u);
+                    }
+                    return databaseFactory.getUsers();
+
+                });
+
     }
+
 }
