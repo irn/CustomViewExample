@@ -6,7 +6,7 @@ package ivakhnenko.customviewexample.model;
 
 public enum UserRole {
 
-    ADMIN(1), USER(2), ANONYMOUS(2);
+    ADMIN(1), USER(2), ANONYMOUS(3);
 
     int id;
 
