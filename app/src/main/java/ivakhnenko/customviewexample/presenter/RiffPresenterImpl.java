@@ -15,11 +15,10 @@ public class RiffPresenterImpl implements RiffListPresenter {
 
     private RiffListModel model;
 
-    private UsersListView view;
+    private UsersListView userView;
 
-    public RiffPresenterImpl(UsersListView view) {
+    public RiffPresenterImpl() {
         this.model = new RiffListModelImpl(new UserFactoryImpl());
-        this.view = view;
     }
 
     @Override
@@ -28,14 +27,15 @@ public class RiffPresenterImpl implements RiffListPresenter {
     }
 
     @Override
-    public void onResume() {
-        view.showWaiting();
+    public void onResume(UsersListView view) {
+        this.userView = view;
+        userView.showWaiting();
         model.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(users -> {
-                view.hideWaiting();
-                view.setUsers(users);
+                userView.hideWaiting();
+                userView.setUsers(users);
                 });
 
     }
@@ -43,5 +43,10 @@ public class RiffPresenterImpl implements RiffListPresenter {
     @Override
     public void onPause() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        userView = null;
     }
 }

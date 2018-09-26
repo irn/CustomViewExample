@@ -23,7 +23,11 @@ public class MainActivity extends AppCompatActivity implements UsersListView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new RiffPresenterImpl(this);
+        if (getLastCustomNonConfigurationInstance() != null){
+            presenter = (RiffListPresenter) getLastCustomNonConfigurationInstance();
+        } else {
+            presenter = new RiffPresenterImpl();
+        }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
     }
@@ -31,13 +35,24 @@ public class MainActivity extends AppCompatActivity implements UsersListView {
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.onResume();
+        presenter.onResume(this);
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return presenter;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         presenter.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @Override
